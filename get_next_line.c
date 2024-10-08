@@ -11,15 +11,32 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <unistd.h>
+
+int ft_counter(int i)
+{
+	i = 0;
+	while (i != '\0')
+	{
+		i++;
+	}
+	return(i);
+}
 
 char *get_next_line(int fd)
 {
-    int rl;
+	int rl;
+	int i;
 
-    if (!fd || fd = "\0")
-        return (NULL);
+	ft_counter(i);
+	if (!fd || fd = "\0")
+		return (NULL);
 
-
-    return  (rl);
+	while (rl != '\0')
+	{
+		if (i = " ")
+			write(1, "\n", 1);
+		else if (rl = '\0')
+			return(0);
+	}
+	return  (rl);
 }
