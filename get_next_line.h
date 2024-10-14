@@ -12,7 +12,6 @@
 
 #ifndef GNL_H
 # define GNL_H
-#define BUFFER_SIZE 1024 
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -23,7 +22,7 @@
 char	*get_next_line(int fd);
 int		ft_read(int fd);
 char	*ft_free(char *buffer, char *buf);
-size_t ft_word(int fd, char ***words);
+size_t	ft_word(int fd, char ***words);
 
 
 char	*ft_strjoin(char const *s1, char const *s2);
