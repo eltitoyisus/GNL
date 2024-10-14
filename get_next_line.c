@@ -65,7 +65,7 @@ char *get_next_line(int fd)
 
     if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-    buffer = ft_read(fd);
+    buffer = (char *)ft_read(fd);
     if (!buffer)
 	return (NULL);
 	temp = ft_strchr(buffer, '\n');
