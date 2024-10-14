@@ -63,19 +63,23 @@ char *get_next_line(int fd)
     char *line = NULL;
     char *temp;
 
-    if (fd < 0 || BUFFER_SIZE <= 0) return NULL;
-    (int )buffer = ft_read(fd);
-    if (!buffer) return NULL;
-    if (ft_strchr(buffer, '\n')) {
-        temp = ft_strchr(buffer, '\n');
+    if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+    buffer = ft_read(fd);
+    if (!buffer)
+	return (NULL);
+	temp = ft_strchr(buffer, '\n');
+    if (temp)
+	{
         *temp = '\0';
         line = ft_strdup(buffer);
         buffer = ft_free(buffer, temp + 1);
-    } else {
+    }
+	else
+	{
         line = ft_strdup(buffer);
         free(buffer);
         buffer = NULL;
     }
     return (line);
 }
-
