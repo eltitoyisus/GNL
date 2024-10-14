@@ -60,7 +60,7 @@ size_t ft_word(int fd, char ***words)
 
 char *get_next_line(int fd)
 {
-    static char *buffer = NULL;
+    static int *buffer = NULL;
     char *line = NULL;
     char *temp;
 
