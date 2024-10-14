@@ -62,10 +62,9 @@ char *get_next_line(int fd)
     static char *buffer = NULL;
     char *line = NULL;
     char *temp;
-
-    if (fd < 0 || BUFFER_SIZE <= 0)
+	
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-    buffer = (char *)ft_read(fd);
     if (!buffer)
 	return (NULL);
 	temp = ft_strchr(buffer, '\n');
