@@ -59,26 +59,26 @@ size_t ft_word(int fd, char ***words)
 
 char *get_next_line(int fd)
 {
-    static char *buffer = NULL;
-    char *line = NULL;
-    char *temp;
-	
+	static char *buffer = NULL;
+	char *line = NULL;
+	char *temp;
+
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-    if (!buffer)
-	return (NULL);
+	if (!buffer)
+		return (NULL);
 	temp = ft_strchr(buffer, '\n');
-    if (temp)
+	if (temp)
 	{
-        *temp = '\0';
-        line = ft_strdup(buffer);
-        buffer = ft_free(buffer, temp + 1);
-    }
+		*temp = '\0';
+		line = ft_strdup(buffer);
+		buffer = ft_free(buffer, temp + 1);
+	}
 	else
 	{
-        line = ft_strdup(buffer);
-        free(buffer);
-        buffer = NULL;
-    }
-    return (line);
+		line = ft_strdup(buffer);
+		free(buffer);
+		buffer = NULL;
+	}
+	return (line);
 }
