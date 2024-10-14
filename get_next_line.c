@@ -25,11 +25,13 @@ int ft_read(int fd)
 {
 	char	*buffer;
 	size_t	bytes_read;
+	int		a;
 	
+	bytes_read = a;
 	buffer = (char *)malloc(BUFFER_SIZE);
 	if (!buffer)
 		return (-1);
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
+ 	a = read(fd, buffer, BUFFER_SIZE);
 	free(buffer);
 	return (0);
 }
