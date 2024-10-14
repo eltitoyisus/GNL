@@ -71,3 +71,23 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		*d++ = *s++;
 	return (dest);
 }
+
+char	*ft_strrchr(const char *s, int c)
+{
+	const char	*i;
+
+	i = 0;
+	while (*s != '\0')
+	{
+		if (*s == (char)c)
+		{
+			i = s;
+		}
+		s++;
+	}
+	if (*s == (char)c)
+	{
+		i = s;
+	}
+	return ((char *)i);
+}
