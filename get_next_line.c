@@ -63,7 +63,6 @@ char *get_next_line(int fd)
     static char *buffer = NULL;
     char *line = NULL;
     char *temp;
-    size_t bytes_read;
 
     if (fd < 0 || BUFFER_SIZE <= 0) return NULL;
     buffer = ft_read(fd);
