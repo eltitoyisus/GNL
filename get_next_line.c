@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 11:49:54 by jramos-a         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:20:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,20 @@ static int	ft_word(const char *s, char c)
 
 static int	ft_line_len(int fd)
 {
-	int	len;
+	int		len;
+	char	buffer;
+	int		bytes_read;
 
 	len = 0;
-	while (fd)
+	bytes_read = 1;
+	while (bytes_read > 0)
 	{
-		while (fd != '\0')
+		bytes_read = read(fd, &buffer, 1);
+		if (bytes_read > 0)
 		{
 			len++;
+			if (buffer == '\n')
+				bytes_read = 0;
 		}
 	}
 	return (len);
@@ -51,32 +57,46 @@ static int	ft_line_len(int fd)
 static int	ft_read(int fd)
 {
 	char	*buffer;
-	char	read_line;
-	int		a;
+	int		bytes_read;
 
-	a = ft_line_len(fd);
 	buffer = (char *)malloc(BUFFER_SIZE);
 	if (!buffer)
 		return (-1);
-	while (fd)
+	while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
-		read_line = read(fd, buffer, BUFFER_SIZE);
-		write(fd, read_line, a);
-		free(buffer);
-		if (fd)
-			free(read_line);
+		write(1, buffer, bytes_read);
 	}
+	free(buffer);
+	if (bytes_read == -1)
+		return (-1);
 	return (0);
 }
 
 char	*get_next_line(int fd)
 {
-	char	*buffer;
 	char	*line;
+	int		len;
+	int		bytes_read;
+	char	buffer;
 
-	buffer = NULL;
-	line = NULL;
-	if (line == '\n')
-		ft_read(fd);
+	if (fd < 0)
+		return (NULL);
+
+	len = ft_line_len(fd);
+	if (len <= 0)
+		return (NULL);
+
+	line = (char *)malloc(len + 1);
+	if (!line)
+		return (NULL);
+
+	bytes_read = read(fd, line, len);
+	if (bytes_read <= 0)
+	{
+		free(line);
+		return (NULL);
+	}
+
+	line[len] = '\0';
 	return (line);
 }
