@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 15:48:53 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 16:03:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	*ft_read(int fd, int len)
 char	*get_next_line(int fd)
 {
     char	*line;
+    char	*temp;
     int		len;
 
     if (fd < 0)
@@ -68,10 +69,27 @@ char	*get_next_line(int fd)
     len = ft_line_len(fd);
     if (len <= 0)
         return (NULL);
-
     line = ft_read(fd, len);
     if (!line)
         return (NULL);
+    while (line[len - 1] != '\n')
+    {
+        len = ft_line_len(fd);
+        if (len <= 0)
+            break;
 
+        temp = ft_read(fd, len);
+        if (!temp)
+        {
+            free(line);
+            return (NULL);
+        }
+        char *joined_line = ft_strjoin(line, temp);
+        free(line);
+        free(temp);
+        line = joined_line;
+        if (!line)
+            return (NULL);
+    }
     return (line);
 }
