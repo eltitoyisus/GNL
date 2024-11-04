@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 16:20:51 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 16:23:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_read(int fd, char *str)
     if (!buffer)
         return (NULL);
     total_read = 1;
-    while (!ft_strchr(str, '\n') && total_read < BUFFER_SIZE)
+    while (!ft_strchr(str, '\n') && total_read != 0)
     {
         total_read = read(fd, buffer, BUFFER_SIZE);
         if (total_read == -1)
