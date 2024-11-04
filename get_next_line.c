@@ -12,73 +12,48 @@
 
 #include "get_next_line.h"
 
-char	*ft_free(char *buffer, char *buf)
+static int	ft_word_counter(int word, int fd, int c)
 {
-	char	*temp;
+	int i;
 
-	temp = ft_strjoin(buffer, buf);
-	free(buffer);
-	return (temp);
+	i = 0;
+	while (*fd)
+	{
+		while (c <= 11 && c >= 13 || c = 23)
+			fd[i++];
+		while (fd[i] == '\n')
+			ft_split(fd, )
+
+	}
 }
 
-int ft_read(int fd)
+static int ft_read(int fd)
 {
 	char	*buffer;
+	char	*read_line;
 	
 	buffer = (char *)malloc(BUFFER_SIZE);
 	if (!buffer)
 		return (-1);
- 	read(fd, buffer, BUFFER_SIZE);
+	while (fd)
+	{
+ 	read_line = read(fd, buffer, BUFFER_SIZE);
+	write(fd, read_line, )
 	free(buffer);
-	return (0);
-}
-
-size_t ft_word(int fd, char ***words)
-{
-	char *line, **temp_words = malloc(10 * sizeof(char *));
-	size_t total_words = 0, word_capacity = 10;
-
-	if (!temp_words) return 0;
-	while ((line = get_next_line(fd)) != NULL) {
-		char *word = strtok(line, " \n\t");
-		while (word) {
-			if (total_words >= word_capacity) {
-				word_capacity *= 2;
-				char **new_words = realloc(temp_words, word_capacity * sizeof(char *));
-				if (!new_words) return (0);
-				temp_words = new_words;
-			}
-			temp_words[total_words++] = ft_strdup(word);
-			word = strtok(NULL, " \n\t");
-		}
-		free(line);
+	if (fd)
+		free(read_line);
 	}
-	*words = temp_words; 
-	return (total_words); 
+	return (0);
 }
 
 char *get_next_line(int fd)
 {
-	static char *buffer = NULL;
-	char *line = NULL;
-	char *temp;
+	static char	*buffer;
+	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (NULL);
-	if (!buffer)
-		return (NULL);
-	temp = ft_strchr(buffer, '\n');
-	if (temp)
-	{
-		*temp = '\0';
-		line = ft_strdup(buffer);
-		buffer = ft_free(buffer, temp + 1);
-	}
-	else
-	{
-		line = ft_strdup(buffer);
-		free(buffer);
-		buffer = NULL;
-	}
+	buffer = NULL;
+	line = NULL;
+	if (line == '\n')
+		ft_read(fd);
 	return (line);
 }
