@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 17:56:27 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 17:59:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_read(int fd, char *buffer)
 		str[bytes] = '\0';
 		buffer = ft_strjoin(buffer, str);
 	}
-	free(s);
+	free(str);
 	return (buffer);
 }
 char	*ft_strjoin(char const *s1, char const *s2)
