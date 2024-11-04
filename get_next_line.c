@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 15:42:32 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 15:48:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ char	*get_next_line(int fd)
 
     if (fd < 0)
         return (NULL);
-
     len = ft_line_len(fd);
     if (len <= 0)
         return (NULL);
