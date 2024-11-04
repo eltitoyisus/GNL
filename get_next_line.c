@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 16:03:28 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 16:17:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,33 @@ int	ft_line_len(int fd)
 	return (len);
 }
 
-char	*ft_read(int fd, int len)
+char	*ft_read(int fd, char *str)
 {
     char	*buffer;
-    int		bytes_read;
     int		total_read;
 
-    buffer = (char *)malloc(len + 1);
+    str = ft_strjoin(str, buffer);
+    buffer = malloc(sizeof(char *) * (BUFFER_SIZE + 1));
     if (!buffer)
         return (NULL);
-
-    total_read = 0;
-    while (total_read < len)
+    total_read = 1;
+    while (!ft_strchr(str, '\n') && total_read < BUFFER_SIZE)
     {
-        bytes_read = read(fd, buffer + total_read, len - total_read);
-        if (bytes_read <= 0)
+        total_read = read(fd, buffer, BUFFER_SIZE);
+        if (total_read == -1)
         {
             free(buffer);
             return (NULL);
         }
-        total_read += bytes_read;
+        buffer[total_read] = '\0';
+        if (!str)
+        {
+            free(buffer);
+            return (NULL);
+        }
     }
-    buffer[len] = '\0';
-    return (buffer);
+    free(buffer);
+    return (NULL);
 }
 
 char	*get_next_line(int fd)
@@ -66,19 +70,12 @@ char	*get_next_line(int fd)
 
     if (fd < 0)
         return (NULL);
-    len = ft_line_len(fd);
-    if (len <= 0)
-        return (NULL);
-    line = ft_read(fd, len);
+    line = ft_read(fd, NULL);
     if (!line)
         return (NULL);
-    while (line[len - 1] != '\n')
+    while (!ft_strchr(line, '\n'))
     {
-        len = ft_line_len(fd);
-        if (len <= 0)
-            break;
-
-        temp = ft_read(fd, len);
+        temp = ft_read(fd, NULL);
         if (!temp)
         {
             free(line);
