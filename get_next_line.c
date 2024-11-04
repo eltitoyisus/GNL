@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 15:31:05 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 15:35:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	ft_line_len(int fd)
+int	ft_line_len(int fd)
 {
 	int		len;
 	char	buffer;
@@ -33,7 +33,7 @@ static int	ft_line_len(int fd)
 	return (len);
 }
 
-static int	ft_read(int fd)
+int	ft_read(int fd)
 {
 	char	*buffer;
 	int		bytes_read;
