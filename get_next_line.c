@@ -6,32 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 15:30:50 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 15:31:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-/*
-static int	ft_word(const char *s, char c)
-{
-	int	word;
-
-	word = 0;
-	if (!s)
-		return (0);
-	while (*s)
-	{
-		while (*s == c)
-			s++;
-		if (*s)
-		{
-			word++;
-			while (*s && *s != c)
-				s++;
-		}
-	}
-	return (word);
-}*/
 
 static int	ft_line_len(int fd)
 {
