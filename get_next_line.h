@@ -25,8 +25,7 @@
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-int	    ft_endl(char *str);
+int	    ft_endline(char *str);
 char	*ft_line(char *buffer);
 char	*ft_nextstr(char *buffer);
 char	*ft_read(int fd, char *buffer);

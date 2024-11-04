@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 19:04:52 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 19:12:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_line(char *buffer)
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	str = ft_substr(buffer, 0, i + ft_endl(buffer));
+	str = ft_substr(buffer, 0, i + ft_endline(buffer));
 	if (!str)
 	{
 		free(str);
