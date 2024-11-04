@@ -25,7 +25,7 @@
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-int	    ft_endline(char *str);
+int		ft_endline(char *str);
 char	*ft_line(char *buffer);
 char	*ft_nextstr(char *buffer);
 char	*ft_read(int fd, char *buffer);
