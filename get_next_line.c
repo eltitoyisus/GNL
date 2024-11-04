@@ -3,53 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 09:50:21 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 11:49:54 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	ft_word_counter(int word, int fd, int c)
+static int	ft_word(const char *s, char c)
 {
-	int i;
+	int	word;
 
-	i = 0;
-	while (*fd)
+	word = 0;
+	if (!s)
+		return (0);
+	while (*s)
 	{
-		while (c <= 11 && c >= 13 || c = 23)
-			fd[i++];
-		while (fd[i] == '\n')
-			ft_split(fd, )
-
+		while (*s == c)
+			s++;
+		if (*s)
+		{
+			word++;
+			while (*s && *s != c)
+				s++;
+		}
 	}
+	return (word);
 }
 
-static int ft_read(int fd)
+static int	ft_line_len(int fd)
+{
+	int	len;
+
+	len = 0;
+	while (fd)
+	{
+		while (fd != '\0')
+		{
+			len++;
+		}
+	}
+	return (len);
+}
+
+static int	ft_read(int fd)
 {
 	char	*buffer;
-	char	*read_line;
-	
+	char	read_line;
+	int		a;
+
+	a = ft_line_len(fd);
 	buffer = (char *)malloc(BUFFER_SIZE);
 	if (!buffer)
 		return (-1);
 	while (fd)
 	{
- 	read_line = read(fd, buffer, BUFFER_SIZE);
-	write(fd, read_line, )
-	free(buffer);
-	if (fd)
-		free(read_line);
+		read_line = read(fd, buffer, BUFFER_SIZE);
+		write(fd, read_line, a);
+		free(buffer);
+		if (fd)
+			free(read_line);
 	}
 	return (0);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char	*buffer;
-	char		*line;
+	char	*buffer;
+	char	*line;
 
 	buffer = NULL;
 	line = NULL;
