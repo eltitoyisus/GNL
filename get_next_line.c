@@ -6,12 +6,12 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 16:23:36 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 16:38:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+/*
 int	ft_line_len(int fd)
 {
 	int		len;
@@ -32,6 +32,7 @@ int	ft_line_len(int fd)
 	}
 	return (len);
 }
+*/
 
 char	*ft_read(int fd, char *str)
 {
