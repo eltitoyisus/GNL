@@ -30,6 +30,7 @@ int	    ft_endl(char *str);
 char	*ft_line(char *buffer);
 char	*ft_nextstr(char *buffer);
 char	*ft_read(int fd, char *buffer);
+char	*ft_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
 
 #endif
