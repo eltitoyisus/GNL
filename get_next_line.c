@@ -6,70 +6,98 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 17:11:14 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 17:56:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_read(int fd, char *str)
+char	*ft_read(int fd, char *buffer)
 {
-	char	*buffer;
-	int		bytes_read;
+	char	*str;
+	int		bytes;
 
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
-		return (NULL);
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	if (bytes_read < 0)
-	{
-		free(buffer);
-		return (NULL);
-	}
-	buffer[bytes_read] = '\0';
+	str = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!str)
-		str = ft_strjoin("", buffer);
-	else
+		return (NULL);
+	bytes = 1;
+	while (!ft_strchr(buffer, '\n') && bytes != 0)
 	{
-		char *temp = str;
-		str = ft_strjoin(str, buffer);
-		free(temp);
+		bytes = read(fd, str, BUFFER_SIZE);
+		if (bytes < 0)
+		{
+			free(str);
+			return (NULL);
+		}
+		str[bytes] = '\0';
+		buffer = ft_strjoin(buffer, str);
 	}
-	free(buffer);
-	return (str);
+	free(s);
+	return (buffer);
+}
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	len1;
+	size_t	len2;
+	char	*new_str;
+
+	if (!s1 || !s2)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	new_str = (char *)malloc((len1 + len2 + 1) * sizeof(char));
+	if (!new_str)
+		return (NULL);
+	ft_memcpy(new_str, s1, len1);
+	ft_memcpy(new_str + len1, s2, len2 + 1);
+	return (new_str);
+}
+
+static char	*ft_line(char *str)
+{
+    int		i;
+    char	*line;
+
+    i = 0;
+    if (!str[i])
+        return (NULL);
+    while (str[i] && str[i] != '\n')
+        i++;
+    line = ft_substr(str, 0, i + 1);
+    return (line);
+}
+
+static char	*ft_nextstr(char *str)
+{
+    int		i;
+    char	*nextstr;
+
+    i = 0;
+    while (str[i] && str[i] != '\n')
+        i++;
+    if (!str[i])
+    {
+        free(str);
+        return (NULL);
+    }
+    nextstr = ft_substr(str, i + 1, ft_strlen(str) - i);
+    free(str);
+    return (nextstr);
 }
 
 char	*get_next_line(int fd)
 {
     static char	*str;
     char		*line;
-    char		*temp;
-    int			ret;
 
     if (fd < 0 || BUFFER_SIZE <= 0)
         return (NULL);
-    line = ft_read(fd, str);
-    if (!line)
+
+    str = ft_read(fd, str);
+    if (!str)
         return (NULL);
-    ret = 1;
-    while (ret > 0)
-    {
-        temp = ft_read(fd, str);
-        if (!temp)
-            return (NULL);
-        if (temp[0] == '\0')
-        {
-            free(temp);
-            break ;
-        }
-        line = ft_strjoin(line, temp);
-        free(temp);
-    }
-    str = ft_strchr(line, '\n');
-    if (str)
-    {
-        str++;
-        str = ft_strjoin("", str);
-    }
+
+    line = ft_line(str);
+    str = ft_nextstr(str);
     return (line);
 }

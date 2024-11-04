@@ -24,6 +24,68 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 
+char	*ft_strchr(const char *s, int c)
+{
+	char	*s_cpy;
+
+	s_cpy = (char *)s;
+	while (*s_cpy)
+	{
+		if (*s_cpy == (char)c)
+			return (s_cpy);
+		s_cpy++;
+	}
+	if ((char)c == '\0')
+		return (s_cpy);
+	return (NULL);
+}
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*new_str;
+	size_t	i;
+	size_t	s_len;
+
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
+	new_str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!new_str)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start + i])
+	{
+		new_str[i] = s[start + i];
+		i++;
+	}
+	new_str[i] = '\0';
+	return (new_str);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*ptr;
+	int		len;
+	int		i;
+
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s);
+	ptr = (char *)malloc((len + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		ptr[i] = s[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	unsigned char	*d;
@@ -43,69 +105,5 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 			i++;
 		}
 	}
-	else
-		ft_memmove(dest, src, n);
 	return (dest);
-}
-void	*ft_memmove(void *dest, const void *src, size_t n)
-{
-	unsigned char	*d;
-	unsigned char	*s;
-	size_t			i;
-
-	i = 0;
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
-	if (dest == src || n == 0)
-		return (dest);
-	if (d < s)
-	{
-		while (i < n)
-		{
-			d[i] = s[i];
-			i++;
-		}
-	}
-	else
-	{
-		while (n--)
-		{
-			d[n] = s[n];
-		}
-	}
-	return (dest);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	char	*s_cpy;
-
-	s_cpy = (char *)s;
-	while (*s_cpy)
-	{
-		if (*s_cpy == (char)c)
-			return (s_cpy);
-		s_cpy++;
-	}
-	if ((char)c == '\0')
-		return (s_cpy);
-	return (NULL);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	size_t	len1;
-	size_t	len2;
-	char	*new_str;
-
-	if (!s1 || !s2)
-		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	new_str = (char *)malloc((len1 + len2 + 1) * sizeof(char));
-	if (!new_str)
-		return (NULL);
-	ft_memcpy(new_str, s1, len1);
-	ft_memcpy(new_str + len1, s2, len2 + 1);
-	return (new_str);
 }
