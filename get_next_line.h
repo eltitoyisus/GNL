@@ -20,7 +20,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stddef.h>
+# include <fcntl.h>
 
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
