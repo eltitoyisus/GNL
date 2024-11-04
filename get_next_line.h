@@ -27,5 +27,8 @@ size_t	ft_strlen(const char *s);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_nextstr(char *str);
+char	*ft_read(int fd, char *str);
+int		ft_line_len(int fd);
+char	*ft_line(char *str);
 
 #endif
