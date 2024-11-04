@@ -39,6 +39,7 @@ char	*ft_strchr(const char *s, int c)
 		return (s_cpy);
 	return (NULL);
 }
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*new_str;
@@ -86,6 +87,7 @@ char	*ft_strdup(const char *s)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	unsigned char	*d;
