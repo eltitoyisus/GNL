@@ -78,3 +78,28 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_memcpy(new_str + len1, s2, len2 + 1);
 	return (new_str);
 }
+char	*ft_nextstr(char *str)
+{
+	int		i;
+	int		n;
+	char	*nw;
+
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (!str[i])
+	{
+		free(str);
+		return (NULL);
+	}
+	nw = (char *) malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	if (!nw)
+		return (NULL);
+	i++;
+	n = 0;
+	while (str[i])
+		nw[n++] = str[i++];
+	nw[n] = '\0';
+	free(str);
+	return (nw);
+}

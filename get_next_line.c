@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 16:17:31 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 16:20:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,32 +61,45 @@ char	*ft_read(int fd, char *str)
     free(buffer);
     return (NULL);
 }
+char	*ft_line(char *str)
+{
+	int		i;
+	char	*nw;
+
+	i = 0;
+	if (!str[i])
+		return (NULL);
+	while (str[i] && str[i] != '\n')
+		i++;
+	nw = (char *)malloc(sizeof(char) * (i + 2));
+	if (!nw)
+		return (NULL);
+	i = 0;
+	while (str[i] && str[i] != '\n')
+	{
+		nw[i] = str[i];
+		i++;
+	}
+	if (str[i] == '\n')
+	{
+		nw[i] = str[i];
+		i++;
+	}
+	nw[i] = '\0';
+	return (nw);
+}
 
 char	*get_next_line(int fd)
 {
-    char	*line;
-    char	*temp;
-    int		len;
+	char		*ln;
+	static char	*str;
 
-    if (fd < 0)
-        return (NULL);
-    line = ft_read(fd, NULL);
-    if (!line)
-        return (NULL);
-    while (!ft_strchr(line, '\n'))
-    {
-        temp = ft_read(fd, NULL);
-        if (!temp)
-        {
-            free(line);
-            return (NULL);
-        }
-        char *joined_line = ft_strjoin(line, temp);
-        free(line);
-        free(temp);
-        line = joined_line;
-        if (!line)
-            return (NULL);
-    }
-    return (line);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	str = ft_read(fd, str);
+	if (!str)
+		return (0);
+	ln = ft_line(str);
+	str = ft_nextstr(str);
+	return (ln);
 }
