@@ -31,5 +31,6 @@ char	*ft_strdup(const char *s);
 char	*ft_nextstr(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 int     ft_endl(char *str);
+static char	*ft_line(char *str);
 
 #endif
