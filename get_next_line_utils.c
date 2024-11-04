@@ -42,28 +42,29 @@ char	*ft_strchr(const char *s, int c)
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*new_str;
-	size_t	i;
-	size_t	s_len;
+	char			*substr;
+	size_t			i;
+	unsigned int	slen;
 
 	if (!s)
 		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-		return (ft_strdup(""));
-	if (len > s_len - start)
-		len = s_len - start;
-	new_str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!new_str)
+	slen = ft_strlen(s);
+	if (((slen - start) > len) && (start < slen))
+		substr = malloc((len * sizeof(char) + 1));
+	else if (start > slen)
+		substr = malloc(sizeof(char));
+	else
+		substr = malloc(((slen - start) * sizeof(char) + 1));
+	if (!substr)
 		return (NULL);
 	i = 0;
-	while (i < len && s[start + i])
+	if ((start < slen))
 	{
-		new_str[i] = s[start + i];
-		i++;
+		while ((i < len) && s[start])
+			substr[i++] = s[start++];
 	}
-	new_str[i] = '\0';
-	return (new_str);
+	substr[i] = '\0';
+	return (substr);
 }
 
 char	*ft_strdup(const char *s)
