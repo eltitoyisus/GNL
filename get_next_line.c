@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 18:41:51 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 18:43:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_read(int fd, char *buffer)
 	int		bytes;
 
 	str = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!s)
+	if (!str)
 		return (NULL);
 	bytes = 1;
 	while (!ft_strchr(buffer, '\n') && bytes != 0)
