@@ -6,12 +6,12 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 15:20:13 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 15:28:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+/*
 static int	ft_word(const char *s, char c)
 {
 	int	word;
@@ -31,7 +31,7 @@ static int	ft_word(const char *s, char c)
 		}
 	}
 	return (word);
-}
+}*/
 
 static int	ft_line_len(int fd)
 {
@@ -77,7 +77,6 @@ char	*get_next_line(int fd)
 	char	*line;
 	int		len;
 	int		bytes_read;
-	char	buffer;
 
 	if (fd < 0)
 		return (NULL);
@@ -90,7 +89,7 @@ char	*get_next_line(int fd)
 	if (!line)
 		return (NULL);
 
-	bytes_read = read(fd, line, len);
+	bytes_read = ft_read(fd);
 	if (bytes_read <= 0)
 	{
 		free(line);
