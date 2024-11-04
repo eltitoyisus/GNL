@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:19:08 by jramos-a          #+#    #+#             */
-/*   Updated: 2024/11/04 11:36:32 by jramos-a         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:51:28 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include <unistd.h>
 # include <stddef.h>
 
-// char	*ft_strjoin(char const *s1, char const *s2);
-// size_t	ft_strlen(const char *s);
-// void	*ft_memcpy(void *dest, const void *src, size_t n);
-// char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlen(const char *s);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+char	*ft_strchr(const char *s, int c);
 
 #endif
