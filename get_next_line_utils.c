@@ -109,4 +109,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_memcpy(new_str + len1, s2, len2 + 1);
 	return (new_str);
 }
-
