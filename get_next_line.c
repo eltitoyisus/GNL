@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 18:43:28 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/04 18:50:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-static char	*ft_line(char *str)
+char	*ft_line(char *str)
 {
 	int		i;
 	char	*buffer;
