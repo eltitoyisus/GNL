@@ -56,7 +56,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	else if (start > strlen)
 		substr = malloc(sizeof(char));
 	else
-		substr = malloc(((slen - start) * sizeof(char) + 1));
+		substr = malloc(((strlen - start) * sizeof(char) + 1));
 	if (!substr)
 		return (NULL);
 	i = 0;
