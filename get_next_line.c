@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/04 19:12:13 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/12 21:22:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_line(char *buffer)
+char	*ft_getline(char *buffer)
 {
 	int		i;
 	char	*str;
@@ -22,7 +22,7 @@ char	*ft_line(char *buffer)
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	str = ft_substr(buffer, 0, i + ft_endline(buffer));
+	str = ft_substr(buffer, 0, i + ft_putend(buffer));
 	if (!str)
 	{
 		free(str);
@@ -31,7 +31,7 @@ char	*ft_line(char *buffer)
 	return (str);
 }
 
-char	*ft_nextstr(char *buffer)
+char	*ft_freebuff(char *buffer)
 {
 	int		i;
 	int		j;
@@ -60,7 +60,7 @@ char	*ft_nextstr(char *buffer)
 	return (str);
 }
 
-char	*ft_read(int fd, char *buffer)
+char	*ft_readndfree(int fd, char *buffer)
 {
 	char	*s;
 	int		bytes;
@@ -119,10 +119,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	buffer = ft_read(fd, buffer);
+	buffer = ft_readndfree(fd, buffer);
 	if (!buffer)
 		return (NULL);
-	line = ft_line(buffer);
-	buffer = ft_nextstr(buffer);
+	line = ft_getline(buffer);
+	buffer = ft_freebuff(buffer);
 	return (line);
 }

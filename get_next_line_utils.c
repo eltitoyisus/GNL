@@ -69,7 +69,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (substr);
 }
 
-int	ft_endline(char *str)
+int	ft_putend(char *str)
 {
 	int	i;
 
