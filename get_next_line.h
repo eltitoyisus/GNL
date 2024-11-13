@@ -25,10 +25,10 @@
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-int		ft_endline(char *str);
-char	*ft_line(char *buffer);
-char	*ft_nextstr(char *buffer);
-char	*ft_read(int fd, char *buffer);
+int		ft_putend(char *str);
+char	*ft_getline(char *buffer);
+char	*ft_freebuff(char *buffer);
+char	*ft_readndfree(int fd, char *buffer);
 char	*ft_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
 

@@ -46,21 +46,21 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char			*substr;
 	size_t			i;
-	unsigned int	slen;
+	unsigned int	strlen;
 
 	if (!s)
 		return (NULL);
-	slen = ft_strlen(s);
-	if (((slen - start) > len) && (start < slen))
+	strlen = ft_strlen(s);
+	if (((strlen - start) > len) && (start < strlen))
 		substr = malloc((len * sizeof(char) + 1));
-	else if (start > slen)
+	else if (start > strlen)
 		substr = malloc(sizeof(char));
 	else
 		substr = malloc(((slen - start) * sizeof(char) + 1));
 	if (!substr)
 		return (NULL);
 	i = 0;
-	if ((start < slen))
+	if ((start < strlen))
 	{
 		while ((i < len) && s[start])
 			substr[i++] = s[start++];
