@@ -6,12 +6,12 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/13 13:57:47 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/14 08:53:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+//valgrind --leak-check=full --show-leak-kinds=all ./a.out
 char	*ft_readndfree(int fd, char *buffer)
 {
 	char	*s;
@@ -97,4 +97,21 @@ char	*get_next_line(int fd)
 	line = ft_getline(buffer);
 	buffer = ft_freebuff(buffer);
 	return (line);
+}
+
+int main()
+{
+	int fd;
+	char *line;
+
+	fd = open("test.txt", O_RDONLY);
+	line = get_next_line(fd);
+	while (line)
+	{
+		printf("%s\n", line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (0);
 }
